@@ -43,7 +43,10 @@ def loadQuestions(eventbrite, eventId, conn):
 def loadDb(config):
     eventId = config['id']
     db_file = config['db']
-
+    
+    directory = os.path.dirname(db_file)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
     conn = sqlite3.connect(db_file)
     createDB(conn)
 
