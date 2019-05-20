@@ -28,7 +28,7 @@ class Updater(Thread):
 
     def run(self):
         self.loadDb()
-        while not self.stopped.wait(120.0):
+        while not self.stopped.wait(1800.0):
             # call a function
             self.loadDb()
 
