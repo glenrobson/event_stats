@@ -1,5 +1,5 @@
 {
-    "washington": {
+    "Washington": {
         "showcase":[
             {"1.0":"1"},
             {"2.0":"3"},
