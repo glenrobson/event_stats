@@ -119,12 +119,7 @@ if __name__ == "__main__":
         total += result[1]
 
 
-    print ("\nNumber attending Consortium Reception:")
-    printSummary(conn, '22866288')
-
-    print ("\nNumber attending Conference Reception:")
-    printSummary(conn, '22866275')
-
+   
     print ("\nWorkshops:")
     workshops = processWorkshops(conn)
     for workshop in workshops["workshops"]:
@@ -148,4 +143,17 @@ if __name__ == "__main__":
         for row in results:
             print (" * %s - %s" % (row[0],row[1]))
 
+    if mode == 'food':
+        print("\nFood preferences:")
+        printSummary(conn, '22866048')
+        print('\nComments:')
+        results = conn.execute('select ticket, answer from question_link inner join users on question_link.user_id = users.id where question_id = "22866049" and answer is not null')
+        for row in results:
+            print ('({}): {}'.format(row[0], row[1]))
     
+        print("\nNumber attending Consortium Reception:")
+        printSummary(conn, '22866288')
+
+        print("\nNumber attending Conference Reception:")
+        printSummary(conn, '22866275')
+
