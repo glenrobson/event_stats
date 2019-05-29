@@ -132,6 +132,7 @@ def conferenceAttendees():
 
     sortedHash = sorted(daysOutHash.keys())
     i = 0
+    previousGotCount = 0
     for result in sortedHash:
         if 'rows' not in data:
             data['rows'] = []
@@ -143,14 +144,9 @@ def conferenceAttendees():
         }
         if 'gottingen' in daysOutHash[result]:
             row['c'].append({ 'v':daysOutHash[result]["gottingen"]['count']})
+            previousGotCount = daysOutHash[result]["gottingen"]['count']
         else:
-            if len(data['rows']) < 1:
-                row['c'].append({ 'v': 0})
-            else:    
-                if 'gottingen' in daysOutHash[sortedHash[i - 1]]:
-                    row['c'].append({ 'v': daysOutHash[sortedHash[i - 1]]['gottingen']['count']})
-                else:    
-                    row['c'].append({ 'v': 0})
+            row['c'].append({ 'v': previousGotCount})
             
         for event in events:
             if event in daysOutHash[result]:
